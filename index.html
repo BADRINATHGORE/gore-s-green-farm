@@ -13,84 +13,118 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #2e7d32, #66bb6a); /* Green gradient */
-      color: #333;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb, #a18cd1); /* pinks, purples */
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 20px;
+      color: #3e2723; /* chocolate */
     }
 
     .container {
       width: 100%;
-      max-width: 600px;
-      background-color: #f5f5dc; /* Light cream/beige */
+      max-width: 700px;
+      background: linear-gradient(160deg, #fefcea, #f1daff, #e0f7fa, #f8bbd0); /* yellow, lavender, aqua, pink */
       padding: 40px 30px;
       border-radius: 20px;
-      box-shadow: 0 8px 30px rgba(34, 139, 34, 0.4); /* Green shadow */
+      border: 5px solid transparent;
+      border-image: linear-gradient(
+        45deg,
+        #ff0000, #ff7f00, #ffff00, #00ff00,
+        #0000ff, #4b0082, #8f00ff,
+        #00ffff, #ff1493, #7fffd4
+      ) 1; /* rainbow and aqua/blue */
+      box-shadow: 0 0 30px #ab47bc, 0 0 10px #26c6da; /* violet and teal */
       text-align: center;
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       margin-bottom: 20px;
-      color: #2e7d32; /* Dark green */
+      color: #d84315; /* burnt orange */
+      text-shadow: 2px 2px 5px #ffee58, 1px 1px 3px #4dd0e1; /* yellow & cyan glow */
     }
 
     p {
-      font-size: 1.1rem;
-      margin-bottom: 25px;
-      color: #4e5d4e; /* Olive green */
+      font-size: 1.15rem;
+      margin-bottom: 20px;
+      color: #4a148c; /* deep purple */
+    }
+
+    .highlight {
+      color: #00bcd4; /* cyan */
+      font-weight: bold;
     }
 
     .email {
       font-size: 1rem;
-      color: #1b5e20;
-      text-decoration: underline;
+      color: #00695c; /* dark teal */
+      text-decoration: none;
+      background: linear-gradient(to right, #fce4ec, #f3e5f5); /* light pink to violet */
+      padding: 8px 14px;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 2px 2px 5px #9e9e9e;
+      transition: all 0.3s ease-in-out;
     }
 
     .email:hover {
-      color: #2e7d32;
+      color: #1b5e20;
+      background: linear-gradient(to right, #a7ffeb, #b9f6ca); /* mint green gradient */
+      transform: scale(1.05);
     }
 
     footer {
       margin-top: 30px;
-      font-size: 0.9rem;
-      color: #388e3c;
+      font-size: 0.95rem;
+      color: #01579b; /* dark blue */
+      background-color: #fff9c4; /* soft yellow */
+      padding: 12px;
+      border-radius: 12px;
+      box-shadow: inset 0 0 10px #c5e1a5; /* light green inset */
     }
 
+    /* Responsive styles with more colors */
     @media (max-width: 768px) {
+      body {
+        background: linear-gradient(135deg, #cfd8dc, #b2ebf2, #ffccbc); /* grey, aqua, peach */
+      }
       h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
+        color: #6a1b9a; /* purple */
       }
       p {
-        font-size: 1rem;
+        color: #c62828; /* red */
       }
       .container {
-        padding: 30px 20px;
+        background: linear-gradient(to bottom, #f3e5f5, #ffe0b2); /* lavender to orange */
       }
     }
 
     @media (max-width: 480px) {
       h1 {
         font-size: 1.8rem;
+        color: #283593; /* indigo */
       }
       p {
-        font-size: 0.95rem;
+        font-size: 1rem;
+        color: #006064; /* cyan dark */
+      }
+      footer {
+        background-color: #e0f2f1; /* teal soft */
+        color: #d32f2f; /* bold red */
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>🌿 Coming Soon!</h1>
-    <p><strong>Gore’s Green Farm</strong> is working hard to launch our website.<br>Please stay tuned!</p>
+    <h1>🔧 Under Maintenance</h1>
+    <p><strong style="color:#ff5722;">Gore’s Green Farm</strong> is currently undergoing improvements.<br>
+    <span class="highlight">We'll be back soon with something fresh and better!</span></p>
 
     <p>Contact us: <a href="mailto:groupgore2470@gmail.com" class="email">groupgore2470@gmail.com</a></p>
-
-    <!-- Optional: Countdown Timer Placeholder -->
-    <!-- <div id="countdown">Launching in: 10 days</div> -->
 
     <footer>&copy; 2025 Gore’s Green Farm. All rights reserved.</footer>
   </div>
