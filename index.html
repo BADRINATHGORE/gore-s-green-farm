@@ -1,132 +1,1787 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gore's Green Farm</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb, #a18cd1); /* pinks, purples */
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      color: #3e2723; /* chocolate */
-    }
-
-    .container {
-      width: 100%;
-      max-width: 700px;
-      background: linear-gradient(160deg, #fefcea, #f1daff, #e0f7fa, #f8bbd0); /* yellow, lavender, aqua, pink */
-      padding: 40px 30px;
-      border-radius: 20px;
-      border: 5px solid transparent;
-      border-image: linear-gradient(
-        45deg,
-        #ff0000, #ff7f00, #ffff00, #00ff00,
-        #0000ff, #4b0082, #8f00ff,
-        #00ffff, #ff1493, #7fffd4
-      ) 1; /* rainbow and aqua/blue */
-      box-shadow: 0 0 30px #ab47bc, 0 0 10px #26c6da; /* violet and teal */
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 2.8rem;
-      margin-bottom: 20px;
-      color: #d84315; /* burnt orange */
-      text-shadow: 2px 2px 5px #ffee58, 1px 1px 3px #4dd0e1; /* yellow & cyan glow */
-    }
-
-    p {
-      font-size: 1.15rem;
-      margin-bottom: 20px;
-      color: #4a148c; /* deep purple */
-    }
-
-    .highlight {
-      color: #00bcd4; /* cyan */
-      font-weight: bold;
-    }
-
-    .email {
-      font-size: 1rem;
-      color: #00695c; /* dark teal */
-      text-decoration: none;
-      background: linear-gradient(to right, #fce4ec, #f3e5f5); /* light pink to violet */
-      padding: 8px 14px;
-      border-radius: 10px;
-      display: inline-block;
-      box-shadow: 2px 2px 5px #9e9e9e;
-      transition: all 0.3s ease-in-out;
-    }
-
-    .email:hover {
-      color: #1b5e20;
-      background: linear-gradient(to right, #a7ffeb, #b9f6ca); /* mint green gradient */
-      transform: scale(1.05);
-    }
-
-    footer {
-      margin-top: 30px;
-      font-size: 0.95rem;
-      color: #01579b; /* dark blue */
-      background-color: #fff9c4; /* soft yellow */
-      padding: 12px;
-      border-radius: 12px;
-      box-shadow: inset 0 0 10px #c5e1a5; /* light green inset */
-    }
-
-    /* Responsive styles with more colors */
-    @media (max-width: 768px) {
-      body {
-        background: linear-gradient(135deg, #cfd8dc, #b2ebf2, #ffccbc); /* grey, aqua, peach */
-      }
-      h1 {
-        font-size: 2.2rem;
-        color: #6a1b9a; /* purple */
-      }
-      p {
-        color: #c62828; /* red */
-      }
-      .container {
-        background: linear-gradient(to bottom, #f3e5f5, #ffe0b2); /* lavender to orange */
-      }
-    }
-
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.8rem;
-        color: #283593; /* indigo */
-      }
-      p {
-        font-size: 1rem;
-        color: #006064; /* cyan dark */
-      }
-      footer {
-        background-color: #e0f2f1; /* teal soft */
-        color: #d32f2f; /* bold red */
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gore's Green Farm</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        /* Color Variables for Light Theme */
+        
+         :root {
+            --primary: #4a7c59;
+            --secondary: #f8f5e6;
+            --accent: #e9b44c;
+            --dark: #2d3a2d;
+            --light: #ffffff;
+            --light-green: #e8f5e9;
+            --light-beige: #f9f5f0;
+            --light-blue: #e3f2fd;
+            --light-yellow: #fff9e6;
+            --text: #333333;
+            --bg: #ffffff;
+        }
+        /* Dark Theme Variables */
+        
+        .dark-theme {
+            --primary: #5a8c69;
+            --secondary: #2a2a2a;
+            --accent: #e9b44c;
+            --dark: #1a1a1a;
+            --light: #333333;
+            --light-green: #2a3a2a;
+            --light-beige: #3a3a3a;
+            --light-blue: #2a3a4a;
+            --light-yellow: #3a3a2a;
+            --text: #f0f0f0;
+            --bg: #222222;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1,
+        h2,
+        h3 {
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        /* HEADER STYLES (FIXED) */
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .header-shrink {
+            padding: 10px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-left-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+            font-size: 17px;
+            position: relative;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        /* HEADER CONTROLS (Theme/Language) - Right side on desktop */
+        
+        .header-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .mobile-controls {
+            display: none !important;
+        }
+        
+        .theme-toggle,
+        .lang-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: -20px;
+            transition: background-color 0.3s;
+        }
+        
+        .theme-toggle:hover,
+        .lang-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1002;
+        }
+        /* CONTENT STYLES */
+        /* Hero Section */
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            height: 100vh;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        /* About Section */
+        
+        .about {
+            background-color: var(--light-green);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        /* Products Section */
+        
+        .products {
+            background-color: var(--light-beige);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        /* Animals Section */
+        
+        .animals {
+            background-color: var(--light-blue);
+        }
+        
+        .animals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .animal-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        
+        .animal-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .animal-image {
+            height: 200px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .animal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .animal-card:hover .animal-image img {
+            transform: scale(1.1);
+        }
+        
+        .animal-info {
+            padding: 20px;
+        }
+        
+        .animal-info h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        /* Seasons Section */
+        
+        .seasons {
+            background-color: var(--light-yellow);
+        }
+        
+        .season-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .season-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            width: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .season-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .season-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        /* Gallery Section */
+        
+        .gallery {
+            background-color: var(--light-green);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        /* Farm House Section */
+        
+        .farmhouse {
+            background-color: var(--light-beige);
+        }
+        
+        .farmhouse-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .farmhouse-text {
+            flex: 1;
+        }
+        
+        .farmhouse-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .farmhouse-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .farmhouse-image:hover img {
+            transform: scale(1.05);
+        }
+        /* Team Section */
+        
+        .team {
+            background-color: var(--light-blue);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .team-image {
+            height: 250px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .team-info {
+            padding: 20px;
+        }
+        
+        .team-info h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .team-info .role {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        /* Different colors for team cards */
+        
+        .team-card:nth-child(1) {
+            background-color: #e8f5e9;
+        }
+        
+        .team-card:nth-child(2) {
+            background-color: #e3f2fd;
+        }
+        
+        .team-card:nth-child(3) {
+            background-color: #fff9e6;
+        }
+        
+        .team-card:nth-child(4) {
+            background-color: #fce4ec;
+        }
+        /* Dark theme adjustments for team cards */
+        
+        .dark-theme .team-card:nth-child(1) {
+            background-color: #2a3a2a;
+        }
+        
+        .dark-theme .team-card:nth-child(2) {
+            background-color: #2a3a4a;
+        }
+        
+        .dark-theme .team-card:nth-child(3) {
+            background-color: #3a3a2a;
+        }
+        
+        .dark-theme .team-card:nth-child(4) {
+            background-color: #3a2a3a;
+        }
+        /* Visit Section */
+        
+        .visit {
+            background: linear-gradient(rgba(74, 124, 89, 0.9), rgba(74, 124, 89, 0.9)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+        }
+        
+        .visit h2 {
+            color: white;
+        }
+        
+        .visit h2:after {
+            background-color: var(--accent);
+        }
+        
+        .visit-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .info-item {
+            margin: 20px;
+        }
+        
+        .info-item i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .contact-details {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-details h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .contact-person {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        /* Footer */
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Back to Top Button */
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--dark);
+            transform: translateY(-3px);
+        }
+        /* Image Modal - IMPROVED FOR RESPONSIVE DESIGN */
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2001;
+        }
+        
+        .close-modal:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+        /* Loading Spinner */
+        
+        .loading-spinner {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loading-spinner.active {
+            display: flex;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(74, 124, 89, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        /* Mobile Menu Overlay */
+        
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+        /* RESPONSIVE STYLES (FIXED) */
+        
+        @media (max-width: 1200px) {
+            .container {
+                width: 95%;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .about-content,
+            .farmhouse-content {
+                flex-direction: column;
+            }
+            .about-image,
+            .farmhouse-image {
+                margin-top: 30px;
+            }
+            .footer-section {
+                flex: 1 0 50%;
+            }
+            .header-left-group {
+                gap: 20px;
+            }
+            .nav-links li {
+                margin-left: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.7rem;
+            }
+            .header-left-group {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 80px 20px 20px;
+                text-align: left;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                z-index: 1000;
+            }
+            .nav-links.active {
+                display: flex;
+                right: 0;
+            }
+            .nav-links li {
+                margin: 15px 0;
+            }
+            .mobile-menu-btn {
+                display: block;
+                z-index: 1001;
+            }
+            .hero {
+                margin-top: 60px;
+                height: calc(100vh - 60px);
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .visit-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            .contact-person {
+                flex-direction: column;
+                text-align: center;
+            }
+            .header-controls {
+                display: none;
+            }
+            .mobile-controls {
+                display: flex !important;
+                gap: 15px;
+                margin-top: 20px;
+                justify-content: center;
+            }
+            .footer-section {
+                flex: 1 0 100%;
+            }
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            section {
+                padding: 60px 0;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            .season-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            .season-card {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero {
+                height: auto;
+                padding: 100px 0;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .nav-links {
+                padding: 60px 20px 20px;
+            }
+        }
+        /* Language Styles */
+        
+        .marathi {
+            display: none;
+        }
+        
+        .lang-marathi .marathi {
+            display: block;
+        }
+        
+        .lang-marathi .english {
+            display: none;
+        }
+        /* Add scrollbar to mobile nav menu when height exceeds screen */
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+            .nav-links::-webkit-scrollbar {
+                width: 8px;
+            }
+            .nav-links::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.1);
+            }
+            .nav-links::-webkit-scrollbar-thumb {
+                background: rgba(255, 255, 255, 0.4);
+                border-radius: 4px;
+            }
+            .nav-links::-webkit-scrollbar-thumb:hover {
+                background: rgba(255, 255, 255, 0.6);
+            }
+        }
+    </style>
 </head>
-<body>
-  <div class="container">
-    <h1>🔧 Under Maintenance</h1>
-    <p><strong style="color:#ff5722;">Gore’s Green Farm</strong> is currently undergoing improvements.<br>
-    <span class="highlight">We'll be back soon with something fresh and better!</span></p>
 
-    <p>Contact us: <a href="mailto:goresgreen2470@farm.com" class="email">goresgreen2470@farm.com</a></p>
+<body class="lang-english">
+    <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+    </div>
 
-    <footer>&copy; 2025 Gore’s Green Farm. All rights reserved.</footer>
-  </div>
+    <div class="modal" id="imageModal">
+        <button class="close-modal" id="closeModal">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Zoomed Image">
+        </div>
+    </div>
+
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <header id="mainHeader">
+        <div class="container header-container">
+            <div class="header-left-group">
+                <div class="logo">
+                    <i class="fas fa-seedling"></i>
+                    <span class="english">Gore's Green Farm</span>
+                    <span class="marathi">गोरे ग्रीन फार्म</span>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" class="english">Home</a><a href="#home" class="marathi">मुख्यपृष्ठ</a></li>
+                    <li><a href="#about" class="english">About</a><a href="#about" class="marathi">आमच्याबद्दल</a></li>
+                    <li><a href="#products" class="english">Products</a><a href="#products" class="marathi">उत्पादने</a></li>
+                    <li><a href="#animals" class="english">Animals</a><a href="#animals" class="marathi">प्राणी</a></li>
+                    <li><a href="#seasons" class="english">Seasons</a><a href="#seasons" class="marathi">ऋतू</a></li>
+                    <li><a href="#gallery" class="english">Gallery</a><a href="#gallery" class="marathi">शेतीचे फोटो</a></li>
+                    <li><a href="#farmhouse" class="english">Farm House</a><a href="#farmhouse" class="marathi">फार्म हाऊस</a></li>
+                    <li><a href="#team" class="english">Our Team</a><a href="#team" class="marathi">आमचा संघ</a></li>
+                    <li><a href="#visit" class="english">Visit Us</a><a href="#visit" class="marathi">भेट द्या</a></li>
+                    <div class="mobile-controls">
+                        <button class="theme-toggle" id="mobileThemeToggle" title="Toggle Dark Mode">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <button class="lang-toggle" id="mobileLangToggle" title="Toggle Language">
+                            <span class="english">मराठी</span>
+                            <span class="marathi">ENG</span>
+                        </button>
+                    </div>
+                </ul>
+            </div>
+            <div class="header-controls">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="lang-toggle" id="langToggle" title="Toggle Language">
+                    <span class="english">मराठी</span>
+                    <span class="marathi">ENG</span>
+                </button>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1 class="english">Fresh Organic Produce From Our Farm</h1>
+            <h1 class="marathi">आमच्या शेतातील ताजी ऑर्गेनिक पिके</h1>
+            <p class="english">Gore's Green Farm, nestled in the heart of Sawkheda, Maharashtra, grows the freshest organic produce using sustainable farming practices that respect nature and tradition.</p>
+            <p class="marathi">गोरे ग्रीन फार्म, महाराष्ट्रातील सावखेडा गावाच्या मध्यभागी वसलेले आहे, जिथे निसर्ग आणि परंपरेचा आदर करणाऱ्या शाश्वत शेती पद्धतींनी ताजी ऑर्गेनिक पिके घेतली जातात.</p>
+            <a href="#products" class="btn english">View Our Products</a>
+            <a href="#products" class="btn marathi">आमची उत्पादने पहा</a>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="english">Our Farming Story</h2>
+            <h2 class="marathi">आमच्या शेतीची कहाणी</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="english">
+                        Gore's Green Farm has been family-owned and operated for over two generations. Our commitment to sustainable agriculture and organic farming methods ensures that we deliver the highest quality produce while protecting our environment.
+                    </p>
+                    <p class="marathi">
+                        गोरे ग्रीन फार्म दोन पिढ्यांपासून कुटुंबाच्या मालकीचे आणि चालवले जात आहे. शाश्वत कृषी आणि ऑर्गेनिक शेती पद्धतींची आमची वचनबद्धता आम्हाला सर्वोच्च दर्जाची उत्पादने देण्यासाठी सुनिश्चित करते तर आमच्या पर्यावरणाचे संरक्षण करते.
+                    </p>
+                    <p class="english">
+                        We believe in the farm-to-table philosophy, which is why we harvest our crops at peak ripeness and deliver them directly to our local community. Our methods prioritize soil health, biodiversity, and natural pest control.
+                    </p>
+                    <p class="marathi">
+                        आम्ही फार्म-टू-टेबल तत्त्वज्ञानावर विश्वास ठेवतो, म्हणूनच आम्ही आमची पिके परिपक्वतेच्या शिखरावर कापतो आणि ती थेट आमच्या स्थानिक समुदायापर्यंत पोहोचवतो. आमच्या पद्धती मातीचे आरोग्य, जैवविविधता आणि नैसर्गिक कीटक नियंत्रणाला प्राधान्य देतात.
+                    </p>
+                    <p class="english">
+                        Visit our farm to taste the difference that careful cultivation and sustainable practices make in every crop we grow.
+                    </p>
+                    <p class="marathi">
+                        आम्ही वाढवत असलेल्या प्रत्येक पिकामध्ये काळजीपूर्वक लागवड आणि शाश्वत पद्धतींमुळे काय फरक पडतो ते चवण्यासाठी आमच्या शेताला भेट द्या.
+                    </p>
+                    <a href="#visit" class="btn english">Visit Our Farm</a>
+                    <a href="#visit" class="btn marathi">आमच्या शेताला भेट द्या</a>
+                </div>
+                <div class="about-image" data-src="images/Ginger.jpg">
+                    <img src="images/Ginger.jpg" alt="Farmer in field" style="width: 100%; height: 400px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="english">Our Products</h2>
+            <h2 class="marathi">आमची उत्पादने</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image" data-src="https://images.unsplash.com/photo-1633873972250-e69cd8b5e31c?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y290dG9ufGVufDB8fDB8fHww">
+                        <img src="https://images.unsplash.com/photo-1633873972250-e69cd8b5e31c?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y290dG9ufGVufDB8fDB8fHww" alt="Cotton">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="english">Cotton</h3>
+                        <h3 class="marathi">कापूस</h3>
+                        <p class="english">
+                            High-quality, organic cotton grown using sustainable farming practices that protect soil health and biodiversity.
+                        </p>
+                        <p class="marathi">
+                            शाश्वत शेती पद्धतींसह वाढवलेला उच्च-गुणवत्तेचा, सेंद्रिय कापूस जो मातीचे आरोग्य आणि जैवविविधतेचे रक्षण करतो.
+                        </p>
+                        <p class="availability english">Available: September - December</p>
+                        <p class="availability marathi">उपलब्धता: सप्टेंबर - डिसेंबर</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" data-src="https://www.global-agriculture.com/wp-content/uploads/2023/04/Untitled-1-63-768x427.jpg">
+                        <img src="https://www.global-agriculture.com/wp-content/uploads/2023/04/Untitled-1-63-768x427.jpg" alt="Maize">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="english">Maize</h3>
+                        <h3 class="marathi">मका</h3>
+                        <p class="english">
+                            Fresh, sweet maize grown organically with sustainable farming methods, ideal for cooking and direct consumption.
+                        </p>
+                        <p class="marathi">
+                            शाश्वत शेती पद्धतींनी सेंद्रियपणे वाढवलेला ताजा, गोड मका, स्वयंपाकासाठी आणि थेट सेवनासाठी उपयुक्त.
+                        </p>
+                        <p class="availability english">Available: June - September</p>
+                        <p class="availability marathi">उपलब्धता: जून - सप्टेंबर</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" data-src="https://cms.ctahr.hawaii.edu/portals/43/Ginger%20Field.jpg">
+                        <img src="https://cms.ctahr.hawaii.edu/portals/43/Ginger%20Field.jpg" alt="Ginger">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="english">Ginger</h3>
+                        <h3 class="marathi">आले</h3>
+                        <p class="english">
+                            Fresh, organic ginger known for its rich flavor and potent medicinal properties, cultivated through sustainable farming practices.
+                        </p>
+                        <p class="marathi">
+                            शाश्वत शेती पद्धतीने वाढवलेले ताजे, ऑर्गेनिक आले, जे समृद्ध चव आणि प्रभावी औषधीय गुणधर्मांसाठी ओळखले जाते.
+                        </p>
+                        <p class="availability english">Available: January - March</p>
+                        <p class="availability marathi">उपलब्धता: जानेवारी - मार्च</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" data-src="https://www.shutterstock.com/image-photo/chickpea-plant-farm-green-chickpeas-600nw-2479189141.jpg">
+                        <img src="https://www.shutterstock.com/image-photo/chickpea-plant-farm-green-chickpeas-600nw-2479189141.jpg" alt="Gram">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="english">Gram</h3>
+                        <h3 class="marathi">हरभरा</h3>
+                        <p class="english">Nutritious chickpeas ideal for a variety of culinary uses.</p>
+                        <p class="marathi">विविध पाककृतींसाठी उपयुक्त आणि पौष्टिक हरभरा.</p>
+                        <p class="availability english">Available: February - April</p>
+                        <p class="availability marathi">उपलब्धता: फेब्रुवारी - एप्रिल</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" data-src="https://m.media-amazon.com/images/I/619IvPKA-xL._UF350,350_QL80_.jpg">
+                        <img src="https://m.media-amazon.com/images/I/619IvPKA-xL._UF350,350_QL80_.jpg" alt="Tur">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="english">Tur (Pigeon Pea)</h3>
+                        <h3 class="marathi">तूर</h3>
+                        <p class="english">Protein-rich pigeon peas, a staple ingredient in Indian cuisine.</p>
+                        <p class="marathi">प्रथिनेयुक्त तूर डाळ, भारतीय स्वयंपाकातील मुख्य घटक.</p>
+                        <p class="availability english">Available: November - January</p>
+                        <p class="availability marathi">उपलब्धता: नोव्हेंबर - जानेवारी</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" data-src="https://images.bhaskarassets.com/web2images/521/2025/08/01/1000248917_1754037254.jpg">
+                        <img src="https://images.bhaskarassets.com/web2images/521/2025/08/01/1000248917_1754037254.jpg" alt="Soybean">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="english">Soybean</h3>
+                        <h3 class="marathi">सोयाबीन</h3>
+                        <p class="english">High-protein soybeans ideal for a variety of food products.</p>
+                        <p class="marathi">विविध अन्न उत्पादनांसाठी उच्च प्रथिनयुक्त सोयाबीन.</p>
+                        <p class="availability english">Available: September - October</p>
+                        <p class="availability marathi">उपलब्धता: सप्टेंबर - ऑक्टोबर</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" data-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC6U6gV5Y21idJXbmf_uXWY3EiN1LIhPjIMg&s">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC6U6gV5Y21idJXbmf_uXWY3EiN1LIhPjIMg&s" alt="Sunflower">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="english">Sunflower</h3>
+                        <h3 class="marathi">सूर्यफूल</h3>
+                        <p class="english">Bright sunflowers thriving in the summer heat, grown for seeds and oil extraction.</p>
+                        <p class="marathi">उन्हाळ्याच्या उन्हात वाढणारी सुंदर सूर्यफुले, बिया आणि तेलासाठी वाढवलेली.</p>
+                        <p class="availability english">Available: April - June</p>
+                        <p class="availability marathi">उपलब्धता: एप्रिल - जून</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" data-src="https://kjmarathi.b-cdn.net/media/23061/g.jpg">
+                        <img src="https://kjmarathi.b-cdn.net/media/23061/g.jpg" alt="Onion">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="english">Green Gram (Bhuimung)</h3>
+                        <h3 class="marathi">भुईमूंग</h3>
+                        <p class="english">Fresh green gram, a nutritious pulse commonly used in Indian cuisine.</p>
+                        <p class="marathi">ताजा भुईमूंग, पौष्टिक डाळ जी भारतीय स्वयंपाकात वापरली जाते.</p>
+                        <p class="availability english">Available: September - March</p>
+                        <p class="availability marathi">उपलब्धता: सप्टेंबर - मार्च</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" data-src="https://img.khetivyapar.com/images/blogs/1707976811-how-to-do-mango-farming-know-the-advanced-varieties-of-mango.jpg">
+                        <img src="https://img.khetivyapar.com/images/blogs/1707976811-how-to-do-mango-farming-know-the-advanced-varieties-of-mango.jpg" alt="Methi">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="english">Mango</h3>
+                        <h3 class="marathi">आंबा</h3>
+                        <p class="english">Juicy, sweet mangoes, perfect for fresh consumption and making delicious desserts.</p>
+                        <p class="marathi">रसाळ, गोड आंबा, ताज्या सेवनासाठी आणि स्वादिष्ट मिठाईंसाठी परिपूर्ण.</p>
+                        <p class="availability english">Available: March - June</p>
+                        <p class="availability marathi">उपलब्धता: मार्च - जून</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="animals" id="animals">
+        <div class="container">
+            <h2 class="english">Our Animals</h2>
+            <h2 class="marathi">आमचे पशु</h2>
+            <div class="animals-grid">
+                <!-- Ox Card -->
+                <div class="animal-card" style="background-color: #96a1b8;">
+                    <div class="animal-image" data-src="images/Ox.jpg">
+                        <img src="images/Ox.jpg" alt="Ox">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="english">Ox</h3>
+                        <h3 class="marathi">बैल</h3>
+                        <p class="english">Our oxen help plow the fields and play a vital role in supporting sustainable farming practices.</p>
+                        <p class="marathi">आमचे बैल शेत जोतण्यात मदत करतात आणि शाश्वत शेतीसाठी महत्त्वपूर्ण भूमिका बजावतात.</p>
+                    </div>
+                </div>
+                <!-- Goat Card -->
+                <div class="animal-card" style="background-color: #9a8395;">
+                    <div class="animal-image" data-src="https://content3.jdmagicbox.com/comp/yavatmal/e5/9999p7232.7232.190909171518.u7e5/catalogue/jai-malhar-osmanabadi-goat-farm-umarkhed-yavatmal-goat-farming-auhfu61to5.jpg">
+                        <img src="https://content3.jdmagicbox.com/comp/yavatmal/e5/9999p7232.7232.190909171518.u7e5/catalogue/jai-malhar-osmanabadi-goat-farm-umarkhed-yavatmal-goat-farming-auhfu61to5.jpg" alt="Goat" style="height: 550px;">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="english">Goats</h3>
+                        <h3 class="marathi">शेळ्या</h3>
+                        <p class="english">Our goats provide fresh milk and help maintain the natural vegetation of our farm.</p>
+                        <p class="marathi">आमच्या शेळ्या ताजे दूध प्रदान करतात आणि आमच्या शेतातील नैसर्गिक वनस्पतींचे संरक्षण करतात.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="seasons" id="seasons">
+        <div class="container">
+            <h2 class="english">Seasonal Harvest</h2>
+            <h2 class="marathi">ऋतूनुसार कापणी</h2>
+            <div class="season-cards">
+                <div class="season-card">
+                    <div class="season-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3 class="english">Summer (Mar-Jun)</h3>
+                    <h3 class="marathi">उन्हाळा (मार्च-जून)</h3>
+                    <p class="english">Cotton, Maize, Onion, Soybean, Mango</p>
+                    <p class="marathi">कापूस, मका, कांदा, सोयाबीन, आंबा</p>
+                </div>
+                <div class="season-card">
+                    <div class="season-icon">
+                        <i class="fas fa-cloud-rain"></i>
+                    </div>
+                    <h3 class="english">Monsoon (Jun-Sep)</h3>
+                    <h3 class="marathi">पावसाळा (जून-सप्टेंबर)</h3>
+                    <p class="english">Tur (Pigeon Pea), Ginger, Sunflower, Bhuimung (Green Gram), Udid (Black Gram), Mung (Moong Beans)</p>
+                    <p class="marathi">तूर, आले, सूर्यफूल, भुईमुग, उडद, मुग</p>
+                </div>
+                <div class="season-card">
+                    <div class="season-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="english">Winter (Oct-Feb)</h3>
+                    <h3 class="marathi">हिवाळा (ऑक्टोबर-फेब्रुवारी)</h3>
+                    <p class="english">Gram, Wheat, Vegetables, Pulses</p>
+                    <p class="marathi">हरभरा, गहू, भाज्या, डाळी</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <h2 class="english">Photo Gallery</h2>
+            <h2 class="marathi">फोटो गॅलरी</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-src="images/Well.jpg">
+                    <img src="images/Well.jpg" alt="well">
+                </div>
+                <div class="gallery-item" data-src="images/Sunrise.jpg">
+                    <img src="images/Sunrise.jpg" alt="Farm equipment">
+                </div>
+                <div class="gallery-item" data-src="images/Ginger.jpg">
+                    <img src="images/Ginger.jpg" alt="Farm equipment">
+                </div>
+                <div class="gallery-item" data-src="images/Ox1.jpg">
+                    <img src="images/Ox1.jpg" alt="Farm equipment">
+                </div>
+                <div class="gallery-item" data-src="images/Cotton.jpg">
+                    <img src="images/Cotton.jpg" alt="Farm equipment">
+                </div>
+                <div class="gallery-item" data-src="images/Farmhouse.jpg">
+                    <img src="images/Farmhouse.jpg" alt="Farm equipment">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="farmhouse" id="farmhouse">
+        <div class="container">
+            <h2 class="english">Our Farm House</h2>
+            <h2 class="marathi">आमचे फार्म हाऊस</h2>
+            <div class="farmhouse-content">
+                <div class="farmhouse-text">
+                    <p class="english">Our farm house serves as the heart of Gore's Green Farm, where we process and store our harvests. Equipped with modern facilities while maintaining traditional farming values, our farm house ensures the quality and freshness of our
+                        products.
+                    </p>
+                    <p class="marathi">आमचे फार्म हाऊस गोरे ग्रीन फार्मचे हृदयस्थान आहे, जिथे आम्ही आमची कापणी प्रक्रिया करतो आणि साठवतो. पारंपारिक शेती मूल्ये जपत आधुनिक सुविधांसह सुसज्ज, आमचे फार्म हाऊस आमच्या उत्पादनांची गुणवत्ता आणि ताजेपणा सुनिश्चित करते.</p>
+                    <p class="english">We take pride in our sustainable processing methods that minimize waste and maximize the nutritional value of our crops. From cleaning and sorting to packaging, every step is carefully managed to deliver the best to our customers.</p>
+                    <p class="marathi">आम्हाला आमच्या शाश्वत प्रक्रिया पद्धतींवर अभिमान आहे ज्यामुळे कचरा कमी होतो आणि आमच्या पिकांचे पौष्टिक मूल्य वाढते. स्वच्छता आणि वर्गीकरणापासून पॅकेजिंगपर्यंत, प्रत्येक पायरी काळजीपूर्वक व्यवस्थापित केली जाते जेणेकरून आम्ही आमच्या
+                        ग्राहकांना सर्वोत्तम देऊ शकू.</p>
+                    <p class="english">Visitors are welcome to tour our farm house and see firsthand how we maintain the quality of our produce from field to market.</p>
+                    <p class="marathi">अभ्यागतांना आमचे फार्म हाऊस भेट देण्यास आमंत्रित आहे आणि आम्ही शेतातून बाजारापर्यंत आमच्या उत्पादनांची गुणवत्ता कशी राखतो ते प्रत्यक्ष पाहण्यास सांगितले जाते.</p>
+                </div>
+                <div class="farmhouse-image" data-src="images/House.jpg">
+                    <img src="images/House.jpg" alt="Farm house" style="height: 400px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team" id="team">
+        <div class="container">
+            <h2 class="english">Our Team</h2>
+            <h2 class="marathi">आमचा संघ</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image" data-src="images/Baba.jpg">
+                        <img src="images/Baba.jpg" alt="Sampat Gore" style="width: 85%; height: auto; object-fit: cover;">
+                    </div>
+                    <div class="team-info">
+                        <h3 class="english">Sampat Mhatarji Gore</h3>
+                        <h3 class="marathi">संपत म्हातारजी गोरे</h3>
+                        <div class="role english">Advisor / Mentor</div>
+                        <div class="role marathi">मार्गदर्शक</div>
+                        <p class="english">
+                            Sampat Mhatarji Gore brings over 60 years of farming experience and offers invaluable guidance in agricultural planning, sustainable practices, and overall farm management.
+                        </p>
+                        <p class="marathi">
+                            संपत म्हातारजी गोरे यांना ६० वर्षांहून अधिक शेतीचा अनुभव आहे आणि ते शेती नियोजन, शाश्वत पद्धती, आणि एकूण शेत व्यवस्थापनामध्ये अमूल्य मार्गदर्शन करतात.
+                        </p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image" data-src="images/Father.png">
+                        <img src="images/Father.png" alt="Ashok Gore" style="width: 85%; height: auto; object-fit: cover;">
+                    </div>
+                    <div class="team-info">
+                        <h3 class="english">Ashok Sampat Gore</h3>
+                        <h3 class="marathi">अशोक संपत गोरे</h3>
+                        <div class="role english">Farm Owner & Manager</div>
+                        <div class="role marathi">शेत मालक आणि व्यवस्थापक</div>
+                        <p class="english">
+                            With over 35 years of farming experience, Ashok Gore leads our operations with expertise and dedication.
+                        </p>
+                        <p class="marathi">
+                            ३५ वर्षांहून अधिक शेतीच्या अनुभवासह, अशोक आमच्या कार्यसंचालनाचे कौशल्य आणि समर्पणाने नेतृत्व करतात.
+                        </p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image" data-src="images/badri.jpeg">
+                        <img src="images/badri.jpeg" alt="Badrinath Gore" style="width: 85%; height: auto; object-fit: cover;">
+                    </div>
+
+                    <div class="team-info">
+                        <h3>
+                            <span class="english">Badrinath Ashok Gore</span>
+                            <span class="marathi">बद्रीनाथ अशोक गोरे</span>
+                        </h3>
+                        <div class="role english">Technical Associate </div>
+                        <div class="role marathi">तांत्रिक सहयोगी </div>
+                        <p class="english">
+                            With over 15 years of experience, Badrinath Ashok Gore specializes in managing farm documentation and supports all technical aspects of our farming operations.
+                        </p>
+                        <p class="marathi">
+                            १५ वर्षांहून अधिक अनुभवासह, बद्रीनाथ अशोक गोरे शेत दस्तऐवजीकरणाचे व्यवस्थापन करतात आणि आमच्या शेतीच्या सर्व तांत्रिक बाबींना समर्थन देतात.
+                        </p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image" data-src="images/Vishal.jpg">
+                        <img src="images/Vishal.jpg" alt="Vishal Gore" style="width: 85%; height: auto; object-fit: cover;">
+                    </div>
+                    <div class="team-info">
+                        <h3>
+                            <span class="english">Vishal Ashok Gore</span>
+                            <span class="marathi">विशाल अशोक गोरे</span>
+                        </h3>
+                        <div class="role english">Agricultural Plant Health and Marketing</div>
+                        <div class="role marathi">शेती वनस्पती आरोग्य व विपणन</div>
+                        <p class="english">
+                            With over 10 years of experience, Vishal manages plant health and also handles marketing and sales to ensure our products reach the right markets.
+                        </p>
+                        <p class="marathi">
+                            १० वर्षांहून अधिक अनुभवासह, विशाल वनस्पती आरोग्य व्यवस्थापन पाहतात तसेच विपणन आणि विक्री हाताळतात ज्यामुळे आमची उत्पादने योग्य बाजारपेठांपर्यंत पोहोचतात.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="visit" id="visit">
+        <div class="container">
+            <h2 class="english">Visit Our Farm</h2>
+            <h2 class="marathi">आमच्या शेताला भेट द्या</h2>
+            <p class="english">Come see where your food is grown! Our farm is open for visitors every day.</p>
+            <p class="marathi">तुमचे अन्न कोठे वाढवले जाते ते पाहण्यासाठी या! आमचे शेत दररोज अभ्यागतांसाठी खुले आहे.</p>
+            <div class="visit-info">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3 class="english">Location</h3>
+                    <h3 class="marathi">स्थान</h3>
+                    <p class="english">
+                        Serve Gat No 99, Sawkheda Bk,<br> Post. Borgaon Bazar,<br> Ta. Sillod,<br> Dist. Chatrapati Sambhajinagar,<br> Maharashtra, India 431113
+                    </p>
+                    <p class="marathi">
+                        सर्वे गट क्र. ९९, सावखेडा बु,<br> पोस्ट बोरगाव बाजार,<br> ता. सिल्लोड,<br> जि. छत्रपती संभाजीनगर,<br> महाराष्ट्र, भारत ४३१११३
+                    </p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <h3 class="english">Visiting Hours</h3>
+                    <h3 class="marathi">भेटीचे वेळ</h3>
+                    <p class="english">Every Day<br>10:00 AM - 6:00 PM</p>
+                    <p class="marathi">दररोज<br>सकाळी १०:०० - संध्याकाळी ६:००</p>
+                </div>
+            </div>
+            <div class="contact-details">
+                <h3 class="english">Contact Our Team</h3>
+                <h3 class="marathi">आमच्या संघाशी संपर्क साधा</h3>
+                <div class="contact-person">
+                    <div>
+                        <strong class="english">Ashok Sampat Gore</strong><strong class="marathi">अशोक संपत गोरे</strong><br>
+                        <span class="english">Farm Owner & Manager</span><span class="marathi">शेत मालक आणि व्यवस्थापक</span>
+                    </div>
+                    <div>
+                        <strong>8605280063</strong>
+                    </div>
+                </div>
+                <div class="contact-person">
+                    <div>
+                        <strong class="english">Badrinath Ashok Gore</strong><strong class="marathi">बद्रीनाथ अशोक गोरे</strong><br>
+                        <span class="english">Technical Associate</span><span class="marathi">तांत्रिक सहकारी</span>
+                    </div>
+                    <div>
+                        <strong>9067168044</strong>
+                    </div>
+                </div>
+                <div class="contact-person">
+                    <div>
+                        <strong class="english">Vishal Ashok Gore</strong><strong class="marathi">विशाल अशोक गोरे</strong><br>
+                        <span class="english">Agricultural Plant Health and Marketing</span><span class="marathi">कृषी वनस्पती आरोग्य आणि विपणन</span>
+                    </div>
+                    <div>
+                        <strong>9767168044</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="english">Gore's Green Farm</h3>
+                    <h3 class="marathi">गोरे ग्रीन फार्म</h3>
+                    <p class="english">Growing fresh, organic produce for our community with sustainable practices.</p>
+                    <p class="marathi">शाश्वत पद्धतींसह आमच्या समुदायासाठी ताजी, ऑर्गेनिक उत्पादने वाढवत आहे.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 class="english">Quick Links</h3>
+                    <h3 class="marathi">द्रुत दुवे</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home" class="english">Home</a><a href="#home" class="marathi">मुख्यपृष्ठ</a></li>
+                        <li><a href="#about" class="english">About Us</a><a href="#about" class="marathi">आमच्याबद्दल</a></li>
+                        <li><a href="#products" class="english">Products</a><a href="#products" class="marathi">उत्पादने</a></li>
+                        <li><a href="#animals" class="english">Our Animals</a><a href="#animals" class="marathi">आमचे प्राणी</a></li>
+                        <li><a href="#seasons" class="english">Seasonal Guide</a><a href="#seasons" class="marathi">ऋतू मार्गदर्शक</a></li>
+                        <li><a href="#gallery" class="english">Gallery</a><a href="#gallery" class="marathi">गॅलरी</a></li>
+                        <li><a href="#farmhouse" class="english">Farm House</a><a href="#farmhouse" class="marathi">फार्म हाऊस</a></li>
+                        <li><a href="#team" class="english">Our Team</a><a href="#team" class="marathi">आमचा संघ</a></li>
+                        <li><a href="#visit" class="english">Visit Us</a><a href="#visit" class="marathi">भेट द्या</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="english">Get In Touch</h3>
+                    <h3 class="marathi">संपर्क साधा</h3>
+                    <p class="english">Have questions about our farm or products? Reach out to us directly.</p>
+                    <p class="marathi">आमच्या शेत किंवा उत्पादनांबद्दल प्रश्न आहेत? आमच्याशी थेट संपर्क साधा.</p>
+                 <p class="english">
+  <strong>Primary Contact:</strong><br>
+  Ashok Gore - 8605280063<br>
+  <a href="mailto:goresgree2470@farm.com" style="color:skyblue;">goresgree2470@farm.com</a>
+</p>
+
+<p class="marathi">
+  <strong>प्राथमिक संपर्क:</strong><br>
+  अशोक गोरे - 8605280063<br>
+  <a href="mailto:goresgreen2470@farm.com" style="color:skyblue;">goresgreen2470@farm.com</a>
+</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> <span class="english">Gore's Green Farm. All rights reserved.</span><span class="marathi">गोरे ग्रीन फार्म. सर्व हक्क राखीव.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+        function toggleMobileMenu() {
+            navLinks.classList.toggle('active');
+            mobileMenuOverlay.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                // Check if the menu is open before closing
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    mobileMenuOverlay.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Auto-update copyright year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Image zoom functionality - IMPROVED FOR RESPONSIVE DESIGN
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModal = document.getElementById('closeModal');
+
+        // Add click event to all images with data-src attribute
+        document.querySelectorAll('[data-src]').forEach(element => {
+            element.addEventListener('click', function() {
+                modal.style.display = 'flex';
+                modalImage.src = this.getAttribute('data-src');
+                document.body.style.overflow = 'hidden';
+
+                // Reset image size for responsive behavior
+                modalImage.style.maxWidth = '400px%';
+                modalImage.style.maxHeight = '600px%';
+                modalImage.style.width = 'auto';
+                modalImage.style.height = 'auto';
+            });
+        });
+
+        // Close modal when clicking close button
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        });
+
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'flex') {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Offset by 80px for the fixed header height
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            const iconHtml = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            themeToggle.innerHTML = iconHtml;
+            if (mobileThemeToggle) {
+                mobileThemeToggle.innerHTML = iconHtml;
+            }
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+        if (mobileThemeToggle) {
+            mobileThemeToggle.addEventListener('click', toggleTheme);
+        }
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-theme');
+            const iconHtml = '<i class="fas fa-sun"></i>';
+            themeToggle.innerHTML = iconHtml;
+            if (mobileThemeToggle) {
+                mobileThemeToggle.innerHTML = iconHtml;
+            }
+        }
+
+        // Language toggle functionality
+        const langToggle = document.getElementById('langToggle');
+        const mobileLangToggle = document.getElementById('mobileLangToggle');
+
+        function toggleLanguage() {
+            document.body.classList.toggle('lang-marathi');
+            const isMarathi = document.body.classList.contains('lang-marathi');
+            localStorage.setItem('language', isMarathi ? 'marathi' : 'english');
+        }
+
+        langToggle.addEventListener('click', toggleLanguage);
+        if (mobileLangToggle) {
+            mobileLangToggle.addEventListener('click', toggleLanguage);
+        }
+
+        // Check for saved language preference
+        const savedLanguage = localStorage.getItem('language');
+        if (savedLanguage === 'marathi') {
+            document.body.classList.add('lang-marathi');
+        }
+
+        // Back to top button functionality
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Header shrink on scroll
+        const header = document.getElementById('mainHeader');
+
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 100) {
+                header.classList.add('header-shrink');
+            } else {
+                header.classList.remove('header-shrink');
+            }
+        });
+
+        // Loading spinner for images
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const images = document.querySelectorAll('img');
+        let imagesLoaded = 0;
+        const totalImages = images.length;
+
+        // Show loading spinner initially
+        loadingSpinner.classList.add('active');
+
+        // Check if all images are loaded
+        function imageLoaded() {
+            imagesLoaded++;
+            if (imagesLoaded === totalImages) {
+                loadingSpinner.classList.remove('active');
+            }
+        }
+
+        // Add load event listeners to images
+        images.forEach(img => {
+            if (img.complete) {
+                imageLoaded();
+            } else {
+                img.addEventListener('load', imageLoaded);
+                img.addEventListener('error', imageLoaded); // Handle broken images
+            }
+        });
+
+        // Fallback: remove loading spinner after 5 seconds
+        setTimeout(() => {
+            loadingSpinner.classList.remove('active');
+        }, 5000);
+    </script>
 </body>
+
 </html>
