@@ -68,6 +68,14 @@
         
         section {
             padding: 80px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         h1,
@@ -114,12 +122,21 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            min-width: 180px;
+            text-align: center;
         }
         
         .btn:hover {
             background-color: var(--dark);
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         /* HEADER STYLES (FIXED) */
         
@@ -159,7 +176,7 @@
         }
         
         .logo i {
-            margin-right: 10px;
+            margin-right: 20px;
             color: var(--accent);
         }
         
@@ -169,8 +186,8 @@
         }
         
         .nav-links li {
-            margin-left: 20px;
-            font-size: 17px;
+            margin-left: 15px;
+            font-size: 20px;
             position: relative;
         }
         
@@ -220,6 +237,7 @@
             font-size: 1.2rem;
             cursor: pointer;
             padding: 5px 10px;
+            margin-left: 5px;
             border-radius: 5px;
             margin-right: -20px;
             transition: background-color 0.3s;
@@ -255,6 +273,7 @@
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
         }
         
         .hero h1 {
@@ -321,11 +340,12 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         .product-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
         .product-image {
@@ -371,12 +391,13 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
         }
         
         .animal-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
         .animal-image {
@@ -425,11 +446,12 @@
             text-align: center;
             width: 250px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         .season-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
         .season-icon {
@@ -456,6 +478,11 @@
             height: 250px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
         }
         
         .gallery-item img {
@@ -520,12 +547,13 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
         }
         
         .team-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
         .team-image {
@@ -761,6 +789,7 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            animation: fadeIn 0.3s ease;
         }
         
         .modal-content {
@@ -773,10 +802,12 @@
         }
         
         .modal-content img {
-            max-width: 100%;
-            max-height: 100%;
+            max-width: 90%;
+            max-height: 90%;
             object-fit: contain;
             border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 0.3s ease;
         }
         
         .close-modal {
@@ -795,6 +826,7 @@
             align-items: center;
             justify-content: center;
             z-index: 2001;
+            transition: background-color 0.3s;
         }
         
         .close-modal:hover {
@@ -833,6 +865,37 @@
                 transform: rotate(360deg);
             }
         }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
         /* Mobile Menu Overlay */
         
         .mobile-menu-overlay {
@@ -844,41 +907,94 @@
             background-color: rgba(0, 0, 0, 0.5);
             z-index: 999;
             display: none;
+            animation: fadeIn 0.3s ease;
         }
-        /* RESPONSIVE STYLES (FIXED) */
+        /* RESPONSIVE STYLES - COMPLETELY REVISED FOR FULL RANGE */
+        /* Ultra Small Devices (320px - 480px) */
         
-        @media (max-width: 1200px) {
+        @media (max-width: 480px) {
             .container {
                 width: 95%;
+                padding: 0 10px;
             }
-        }
-        
-        @media (max-width: 992px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            section {
+                padding: 40px 0;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                min-width: 150px;
+            }
+            .logo {
+                font-size: 1.4rem;
+            }
+            .products-grid,
+            .animals-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .gallery-item {
+                height: 150px;
+            }
+            .season-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            .season-card {
+                width: 100%;
+                max-width: 280px;
+                padding: 20px;
+            }
             .about-content,
             .farmhouse-content {
                 flex-direction: column;
             }
             .about-image,
             .farmhouse-image {
-                margin-top: 30px;
+                margin-top: 20px;
+                order: 1;
+            }
+            .about-text,
+            .farmhouse-text {
+                order: 2;
+            }
+            .visit-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            .info-item {
+                margin: 15px 0;
+            }
+            .contact-person {
+                flex-direction: column;
+                text-align: center;
             }
             .footer-section {
-                flex: 1 0 50%;
+                flex: 1 0 100%;
+                margin-bottom: 25px;
             }
-            .header-left-group {
-                gap: 20px;
-            }
-            .nav-links li {
-                margin-left: 15px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            h2 {
-                font-size: 1.7rem;
+            .back-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
             }
             .header-left-group {
                 display: block;
@@ -913,8 +1029,108 @@
                 margin-top: 60px;
                 height: calc(100vh - 60px);
             }
+            .header-controls {
+                display: none;
+            }
+            .mobile-controls {
+                display: flex !important;
+                gap: 15px;
+                margin-top: 20px;
+                justify-content: center;
+            }
+            .product-image,
+            .animal-image,
+            .team-image {
+                height: 180px;
+            }
+            .modal-content {
+                max-width: 95%;
+                max-height: 95%;
+            }
+            .btn-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        /* Small Devices (481px - 768px) */
+        
+        @media (min-width: 481px) and (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.7rem;
+            }
             .hero h1 {
                 font-size: 2.5rem;
+            }
+            .products-grid,
+            .animals-grid,
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+            .gallery-item {
+                height: 180px;
+            }
+            .season-cards {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .season-card {
+                width: calc(50% - 20px);
+                max-width: 280px;
+            }
+            .about-content,
+            .farmhouse-content {
+                flex-direction: column;
+            }
+            .about-image,
+            .farmhouse-image {
+                margin-top: 30px;
+            }
+            .footer-section {
+                flex: 1 0 50%;
+            }
+            .header-left-group {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 80px 20px 20px;
+                text-align: left;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                z-index: 1000;
+            }
+            .nav-links.active {
+                display: flex;
+                right: 0;
+            }
+            .nav-links li {
+                margin: 15px 0;
+            }
+            .mobile-menu-btn {
+                display: block;
+                z-index: 1001;
+            }
+            .hero {
+                margin-top: 60px;
+                height: calc(100vh - 60px);
             }
             .visit-info {
                 flex-direction: column;
@@ -934,7 +1150,7 @@
                 justify-content: center;
             }
             .footer-section {
-                flex: 1 0 100%;
+                flex: 1 0 50%;
             }
             .back-to-top {
                 bottom: 20px;
@@ -943,29 +1159,157 @@
                 height: 45px;
             }
         }
+        /* Tablets (769px - 992px) */
         
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 2rem;
+        @media (min-width: 769px) and (max-width: 992px) {
+            .container {
+                width: 95%;
             }
-            .hero p {
-                font-size: 1rem;
-            }
-            section {
-                padding: 60px 0;
+            .products-grid,
+            .animals-grid,
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
             }
             .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                grid-template-columns: repeat(4, 1fr);
+                gap: 15px;
+            }
+            .gallery-item {
+                height: 200px;
             }
             .season-cards {
-                flex-direction: column;
-                align-items: center;
+                flex-wrap: wrap;
+                justify-content: center;
             }
             .season-card {
-                width: 100%;
-                max-width: 300px;
+                width: calc(33.333% - 20px);
+                max-width: 280px;
+            }
+            .about-content,
+            .farmhouse-content {
+                flex-direction: column;
+            }
+            .about-image,
+            .farmhouse-image {
+                margin-top: 30px;
+            }
+            .footer-section {
+                flex: 1 0 50%;
+            }
+            .header-left-group {
+                gap: 20px;
+            }
+            .nav-links li {
+                margin-left: 15px;
             }
         }
+        /* Laptops & Small Desktops (993px - 1200px) */
+        
+        @media (min-width: 993px) and (max-width: 1200px) {
+            .container {
+                width: 95%;
+            }
+            .products-grid,
+            .animals-grid,
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 25px;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 15px;
+            }
+            .gallery-item {
+                height: 220px;
+            }
+            .season-cards {
+                justify-content: space-between;
+            }
+            .season-card {
+                width: calc(33.333% - 20px);
+            }
+        }
+        /* Large Desktops (1201px - 1600px) */
+        
+        @media (min-width: 1201px) and (max-width: 1600px) {
+            .container {
+                width: 85%;
+                max-width: 1400px;
+            }
+            .products-grid,
+            .animals-grid,
+            .team-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 30px;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 20px;
+            }
+            .gallery-item {
+                height: 250px;
+            }
+        }
+        /* Extra Large Desktops (1601px - 10000px) */
+        
+        @media (min-width: 1601px) {
+            .container {
+                width: 80%;
+                max-width: 1800px;
+            }
+            h1 {
+                font-size: 3rem;
+            }
+            h2 {
+                font-size: 2.5rem;
+            }
+            .hero h1 {
+                font-size: 4rem;
+            }
+            .hero p {
+                font-size: 1.5rem;
+            }
+            section {
+                padding: 100px 0;
+            }
+            .products-grid,
+            .animals-grid,
+            .team-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 40px;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(6, 1fr);
+                gap: 25px;
+            }
+            .gallery-item {
+                height: 280px;
+            }
+            .season-card {
+                width: 300px;
+                padding: 40px;
+            }
+            .season-icon {
+                font-size: 3rem;
+            }
+            .btn {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+            .product-image,
+            .animal-image {
+                height: 250px;
+            }
+            .team-image {
+                height: 300px;
+            }
+            .footer-content {
+                max-width: 1600px;
+                margin: 0 auto 30px;
+            }
+        }
+        /* Landscape Mobile Devices */
         
         @media (max-height: 500px) and (orientation: landscape) {
             .hero {
@@ -977,6 +1321,62 @@
             }
             .nav-links {
                 padding: 60px 20px 20px;
+            }
+        }
+        /* High DPI Screens */
+        
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+            .logo i,
+            .season-icon,
+            .info-item i {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+        /* Print Styles */
+        
+        @media print {
+            header,
+            .back-to-top,
+            .mobile-menu-btn,
+            .header-controls,
+            .mobile-controls {
+                display: none !important;
+            }
+            body {
+                background: white;
+                color: black;
+                font-size: 12pt;
+                line-height: 1.4;
+            }
+            .container {
+                width: 100%;
+                max-width: none;
+            }
+            section {
+                padding: 40px 0;
+                page-break-inside: avoid;
+            }
+            .btn {
+                display: none;
+            }
+            a {
+                color: black;
+                text-decoration: underline;
+            }
+            .hero {
+                background: none !important;
+                color: black;
+                height: auto;
+                margin-top: 0;
+            }
+            .hero h1 {
+                color: black;
+                text-shadow: none;
+            }
+            .hero p {
+                text-shadow: none;
             }
         }
         /* Language Styles */
@@ -1044,7 +1444,7 @@
                     <span class="english">Gore's Green Farm</span>
                     <span class="marathi">गोरे ग्रीन फार्म</span>
                 </div>
-                <ul class="nav-links" id="navLinks">
+                <ul class="nav-links" id="navLinks" style="margin-left: 20px;">
                     <li><a href="#home" class="english">Home</a><a href="#home" class="marathi">मुख्यपृष्ठ</a></li>
                     <li><a href="#about" class="english">About</a><a href="#about" class="marathi">आमच्याबद्दल</a></li>
                     <li><a href="#products" class="english">Products</a><a href="#products" class="marathi">उत्पादने</a></li>
@@ -1086,15 +1486,17 @@
             <h1 class="marathi">आमच्या शेतातील ताजी ऑर्गेनिक पिके</h1>
             <p class="english">Gore's Green Farm, nestled in the heart of Sawkheda, Maharashtra, grows the freshest organic produce using sustainable farming practices that respect nature and tradition.</p>
             <p class="marathi">गोरे ग्रीन फार्म, महाराष्ट्रातील सावखेडा गावाच्या मध्यभागी वसलेले आहे, जिथे निसर्ग आणि परंपरेचा आदर करणाऱ्या शाश्वत शेती पद्धतींनी ताजी ऑर्गेनिक पिके घेतली जातात.</p>
-            <a href="#products" class="btn english">View Our Products</a>
-            <a href="#products" class="btn marathi">आमची उत्पादने पहा</a>
+            <div class="btn-container">
+                <a href="#products" class="btn english">View Our Products</a>
+                <a href="#products" class="btn marathi">आमची उत्पादने पहा</a>
+            </div>
         </div>
     </section>
 
     <section class="about" id="about">
         <div class="container">
             <h2 class="english">Our Farming Story</h2>
-            <h2 class="marathi">आमच्या शेतीची कहाणी</h2>
+            <h2 class="marathi">आमची शेतीची कहाणी</h2>
             <div class="about-content">
                 <div class="about-text">
                     <p class="english">
@@ -1115,8 +1517,10 @@
                     <p class="marathi">
                         आम्ही वाढवत असलेल्या प्रत्येक पिकामध्ये काळजीपूर्वक लागवड आणि शाश्वत पद्धतींमुळे काय फरक पडतो ते चवण्यासाठी आमच्या शेताला भेट द्या.
                     </p>
-                    <a href="#visit" class="btn english">Visit Our Farm</a>
-                    <a href="#visit" class="btn marathi">आमच्या शेताला भेट द्या</a>
+                    <div class="btn-container">
+                        <a href="#visit" class="btn english">Visit Our Farm</a>
+                        <a href="#visit" class="btn marathi">आमच्या शेताला भेट द्या</a>
+                    </div>
                 </div>
                 <div class="about-image" data-src="images/Ginger.jpg">
                     <img src="images/Ginger.jpg" alt="Farmer in field" style="width: 100%; height: 400px;">
@@ -1162,6 +1566,23 @@
                         </p>
                         <p class="availability english">Available: June - September</p>
                         <p class="availability marathi">उपलब्धता: जून - सप्टेंबर</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" data-src="https://cdn.mos.cms.futurecdn.net/wbFZ3LmpwKuDAZeFZmyGuf.jpg">
+                        <img src="https://cdn.mos.cms.futurecdn.net/wbFZ3LmpwKuDAZeFZmyGuf.jpg" alt="Wheat">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="english">Wheat</h3>
+                        <h3 class="marathi">गहू</h3>
+                        <p class="english">
+                            High-quality wheat grains cultivated using eco-friendly farming techniques, perfect for flour and other preparations.
+                        </p>
+                        <p class="marathi">
+                            पर्यावरणपूरक शेती तंत्रांनी पिकवलेले दर्जेदार गहू, पीठ व इतर पदार्थांसाठी उपयुक्त.
+                        </p>
+                        <p class="availability english">Available: March - May</p>
+                        <p class="availability marathi">उपलब्धता: मार्च - मे</p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -1262,11 +1683,10 @@
             </div>
         </div>
     </section>
-
     <section class="animals" id="animals">
         <div class="container">
             <h2 class="english">Our Animals</h2>
-            <h2 class="marathi">आमचे पशु</h2>
+            <h2 class="marathi">आमचे प्राणी</h2>
             <div class="animals-grid">
                 <!-- Ox Card -->
                 <div class="animal-card" style="background-color: #96a1b8;">
@@ -1280,6 +1700,30 @@
                         <p class="marathi">आमचे बैल शेत जोतण्यात मदत करतात आणि शाश्वत शेतीसाठी महत्त्वपूर्ण भूमिका बजावतात.</p>
                     </div>
                 </div>
+                <div class="animal-card" style="background-color: #96a1b8;">
+                    <div class="animal-image" data-src="https://i.ytimg.com/vi/zbC9ww7Ko9s/sddefault.jpg?sqp=-oaymwEmCIAFEOAD8quKqQMa8AEB-AHOBoAC4AOKAgwIABABGGUgWChKMA8=&rs=AOn4CLCdBUoJSxVuRmJUdg6mhDoOK-bhIw">
+                        <img src="https://i.ytimg.com/vi/zbC9ww7Ko9s/sddefault.jpg?sqp=-oaymwEmCIAFEOAD8quKqQMa8AEB-AHOBoAC4AOKAgwIABABGGUgWChKMA8=&rs=AOn4CLCdBUoJSxVuRmJUdg6mhDoOK-bhIw" alt="Cow">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="english">Cow</h3>
+                        <h3 class="marathi">गाय</h3>
+                        <p class="english">Our cows provide milk and natural fertilizer, supporting both nutrition and eco-friendly farming.</p>
+                        <p class="marathi">आमच्या गाई दूध आणि नैसर्गिक खत पुरवतात, पोषण व पर्यावरणपूरक शेतीला पाठबळ देतात.</p>
+                    </div>
+                </div>
+
+                <div class="animal-card" style="background-color: #96a1b8;">
+                    <div class="animal-image" data-src="https://t4.ftcdn.net/jpg/05/77/71/61/360_F_577716136_AiHzG0dfeB05yZ9b6lXPSykUtPOl4UXL.jpg">
+                        <img src="https://t4.ftcdn.net/jpg/05/77/71/61/360_F_577716136_AiHzG0dfeB05yZ9b6lXPSykUtPOl4UXL.jpg" alt="Mhais">
+                    </div>
+                    <div class="animal-info">
+                        <h3 class="english">Buffalo</h3>
+                        <h3 class="marathi">म्हैस</h3>
+                        <p class="english">Our buffaloes (Mhais) provide high-quality milk and are a key part of traditional rural farming life.</p>
+                        <p class="marathi">आमच्या म्हशी पौष्टिक दूध देतात आणि पारंपरिक ग्रामीण शेतीचा एक महत्त्वाचा भाग आहेत.</p>
+                    </div>
+                </div>
+
                 <!-- Goat Card -->
                 <div class="animal-card" style="background-color: #9a8395;">
                     <div class="animal-image" data-src="https://content3.jdmagicbox.com/comp/yavatmal/e5/9999p7232.7232.190909171518.u7e5/catalogue/jai-malhar-osmanabadi-goat-farm-umarkhed-yavatmal-goat-farming-auhfu61to5.jpg">
@@ -1292,6 +1736,7 @@
                         <p class="marathi">आमच्या शेळ्या ताजे दूध प्रदान करतात आणि आमच्या शेतातील नैसर्गिक वनस्पतींचे संरक्षण करतात.</p>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -1300,31 +1745,37 @@
         <div class="container">
             <h2 class="english">Seasonal Harvest</h2>
             <h2 class="marathi">ऋतूनुसार कापणी</h2>
+
             <div class="season-cards">
+                <!-- Summer Card -->
                 <div class="season-card">
                     <div class="season-icon">
                         <i class="fas fa-sun"></i>
                     </div>
-                    <h3 class="english">Summer (Mar-Jun)</h3>
-                    <h3 class="marathi">उन्हाळा (मार्च-जून)</h3>
+                    <h3 class="english">Summer (Mar–Jun)</h3>
+                    <h3 class="marathi">उन्हाळा (मार्च–जून)</h3>
                     <p class="english">Cotton, Maize, Onion, Soybean, Mango</p>
                     <p class="marathi">कापूस, मका, कांदा, सोयाबीन, आंबा</p>
                 </div>
+
+                <!-- Monsoon Card -->
                 <div class="season-card">
                     <div class="season-icon">
                         <i class="fas fa-cloud-rain"></i>
                     </div>
-                    <h3 class="english">Monsoon (Jun-Sep)</h3>
-                    <h3 class="marathi">पावसाळा (जून-सप्टेंबर)</h3>
-                    <p class="english">Tur (Pigeon Pea), Ginger, Sunflower, Bhuimung (Green Gram), Udid (Black Gram), Mung (Moong Beans)</p>
+                    <h3 class="english">Monsoon (Jun–Sep)</h3>
+                    <h3 class="marathi">पावसाळा (जून–सप्टेंबर)</h3>
+                    <p class="english">Tur (Pigeon Pea), Ginger, Sunflower, Bhuimung, Udid, Mung</p>
                     <p class="marathi">तूर, आले, सूर्यफूल, भुईमुग, उडद, मुग</p>
                 </div>
+
+                <!-- Winter Card -->
                 <div class="season-card">
                     <div class="season-icon">
                         <i class="fas fa-leaf"></i>
                     </div>
-                    <h3 class="english">Winter (Oct-Feb)</h3>
-                    <h3 class="marathi">हिवाळा (ऑक्टोबर-फेब्रुवारी)</h3>
+                    <h3 class="english">Winter (Oct–Feb)</h3>
+                    <h3 class="marathi">हिवाळा (ऑक्टोबर–फेब्रुवारी)</h3>
                     <p class="english">Gram, Wheat, Vegetables, Pulses</p>
                     <p class="marathi">हरभरा, गहू, भाज्या, डाळी</p>
                 </div>
@@ -1334,8 +1785,8 @@
 
     <section class="gallery" id="gallery">
         <div class="container">
-            <h2 class="english">Photo Gallery</h2>
-            <h2 class="marathi">फोटो गॅलरी</h2>
+            <h2 class="english">Farm Gallery</h2>
+            <h2 class="marathi">शेत गॅलरी</h2>
             <div class="gallery-grid">
                 <div class="gallery-item" data-src="images/Well.jpg">
                     <img src="images/Well.jpg" alt="well">
@@ -1354,6 +1805,18 @@
                 </div>
                 <div class="gallery-item" data-src="images/Farmhouse.jpg">
                     <img src="images/Farmhouse.jpg" alt="Farm equipment">
+                </div>
+                <div class="gallery-item" data-src="images/Vi.jpg">
+                    <img src="images/Vi.jpg" alt="Farm equipment">
+                </div>
+                <div class="gallery-item" data-src="images/Mg.jpg">
+                    <img src="images/Mg.jpg" alt="Farm equipment">
+                </div>
+                <div class="gallery-item" data-src="images/Fa.jpg">
+                    <img src="images/Fa.jpg" alt="Farm equipment">
+                </div>
+                <div class="gallery-item" data-src="images/Ba.jpg">
+                    <img src="images/Ba.jpg" alt="Farm equipment">
                 </div>
             </div>
         </div>
@@ -1558,17 +2021,8 @@
                     <h3 class="marathi">संपर्क साधा</h3>
                     <p class="english">Have questions about our farm or products? Reach out to us directly.</p>
                     <p class="marathi">आमच्या शेत किंवा उत्पादनांबद्दल प्रश्न आहेत? आमच्याशी थेट संपर्क साधा.</p>
-                 <p class="english">
-  <strong>Primary Contact:</strong><br>
-  Ashok Gore - 8605280063<br>
-  <a href="mailto:goresgree2470@farm.com" style="color:skyblue;">goresgree2470@farm.com</a>
-</p>
-
-<p class="marathi">
-  <strong>प्राथमिक संपर्क:</strong><br>
-  अशोक गोरे - 8605280063<br>
-  <a href="mailto:goresgreen2470@farm.com" style="color:skyblue;">goresgreen2470@farm.com</a>
-</p>
+                    <p class="english"><strong>Primary Contact:</strong><br>Ashok Gore - 8605280063</p>
+                    <p class="marathi"><strong>प्राथमिक संपर्क:</strong><br>अशोक गोरे - 8605280063</p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -1619,9 +2073,9 @@
                 modalImage.src = this.getAttribute('data-src');
                 document.body.style.overflow = 'hidden';
 
-                // Reset image size for responsive behavior
-                modalImage.style.maxWidth = '400px%';
-                modalImage.style.maxHeight = '600px%';
+                // Set image size to 90% of screen size for better viewing
+                modalImage.style.maxWidth = '90%';
+                modalImage.style.maxHeight = '90%';
                 modalImage.style.width = 'auto';
                 modalImage.style.height = 'auto';
             });
@@ -1781,6 +2235,24 @@
         setTimeout(() => {
             loadingSpinner.classList.remove('active');
         }, 5000);
+
+        // Scroll animation for sections
+        function checkScroll() {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (sectionTop < windowHeight * 0.85) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+
+        // Initial check on page load
+        window.addEventListener('load', checkScroll);
+        // Check on scroll
+        window.addEventListener('scroll', checkScroll);
     </script>
 </body>
 
